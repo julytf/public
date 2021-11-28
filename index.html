@@ -1,0 +1,21 @@
+<form>
+	<input type="number" id="input_number" >
+	<input type="button" onclick="gen()" id="button" value="generate">
+</form>
+<div id="div_ar"></div>
+<script type="text/javascript">
+	function gen() {
+		var n = document.getElementById('input_number').value;
+		let ar = [];
+		let max = 0, min = 11;
+		for(let i = 0; i < n; i++)
+		{
+			ar.push(Math.round(Math.random()*10)+1);
+			if(max < ar[ar.length-1])
+				max = ar[ar.length-1];
+			if(min > ar[ar.length-1])
+				min = ar[ar.length-1];
+		}
+		document.getElementById('div_ar').innerHTML = ar + '<br> max: ' + max + '<br>min: ' + min;
+	}
+</script>
