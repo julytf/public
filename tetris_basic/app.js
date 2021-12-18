@@ -330,8 +330,10 @@ function changeSetting () {
 	console.log(speed,speeds[speed]*1000);
 	rotation = document.querySelector('input[name="rotation"]:checked').value;
 	setting.style.display = "none";
-	clearInterval(timerId);
-	timerId = setInterval(moveDown, speeds[speed]*1000);
+	if(gameState == 1) {
+		clearInterval(timerId);
+		timerId = setInterval(moveDown, speeds[speed]*1000);
+	}
 }
 
 settingBtn.addEventListener('click',openSetting);
