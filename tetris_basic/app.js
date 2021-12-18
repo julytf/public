@@ -30,6 +30,9 @@ let current;
 let speed = 1;
 let rotation = 0;
 
+//speeds
+const speeds = [0.88,0.81,0.75,0.68,0.61,0.55,0.46,0.36,0.28,0.18]
+
 //define Tetrominos
 const lTetromino = [
 	[1, width+1, width*2+1, 2],
@@ -96,7 +99,7 @@ function gameStart() {
 	scoreDisplay.innerHTML = score;
 	gameState = 1;
 
-	timerId = setInterval(moveDown, 1000);
+	timerId = setInterval(moveDown, speeds[speed]*1000);
 }
 
 //gameOver
@@ -261,7 +264,7 @@ function startBtnClicked () {
 		if(currentTetromino == null) {
 			gameStart();
 		} else {
-			timerId = setInterval(moveDown, 1000);
+			timerId = setInterval(moveDown, speeds[speed]*1000);
 			gameState = 1;
 			cover.style.display = "none";
 		}
@@ -324,8 +327,11 @@ applySettingBtn.addEventListener('click',changeSetting);
 
 function changeSetting () {
 	speed = document.querySelector('input[name="speed"]:checked').value;
+	console.log(speed,speeds[speed]*1000);
 	rotation = document.querySelector('input[name="rotation"]:checked').value;
 	setting.style.display = "none";
+	clearInterval(timerId);
+	timerId = setInterval(moveDown, speeds[speed]*1000);
 }
 
 settingBtn.addEventListener('click',openSetting);
