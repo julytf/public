@@ -96,7 +96,7 @@ function gameStart() {
 	displayNextTetromino();
 
 	score = 0;
-	scoreDisplay.innerHTML = score;
+	scoreDisplay.innerHTML = "Score: " + score;
 	gameState = 1;
 
 	timerId = setInterval(moveDown, speeds[speed]*1000);
@@ -304,7 +304,7 @@ function calScore() {
 		default:
 			score += 10;
 	} 
-	scoreDisplay.innerHTML = "Score:" + score;
+	scoreDisplay.innerHTML = "Score: " + score;
 }
 
 //clear
