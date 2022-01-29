@@ -4,37 +4,40 @@
 }
 
 body {
-	background: #2E4053;
+	/*background: #2E4053;*/
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
-#container {
+#game {
 	width: 600px;
 	height: 600px;
+	background: rgba(143.44, 143.44, 143.44, 0.7);
 	border: 3px solid #808B96;
 	display: flex;
 	flex-wrap: wrap;
 	margin: 25px auto;
 }
 
-#container div {
+#game div {
 	width: 60px;
 	height: 60px;
 	border: 1px solid #5D6D7E;
 	box-sizing: border-box;
 }
 
-#container .head {
+#game .head {
 /*	width: 50px;
 	height: 50px;*/
 	background: #D35400 !important;
 }
 
-#container .snake {
+#game .snake {
 /*	width: 40px;
 	height: 40px;*/
 	background: #DC7633;
 }
 
-#container .food {
+#game .food {
 	background: #58D68D;
 }

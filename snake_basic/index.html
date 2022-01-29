@@ -3,14 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Snake</title>
+	<!-- style -->
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- script -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="app.js" type="text/javascript"></script>
 </head>
 <body>
-	<div id="container">
+	<div id="game">
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-		<div class="snake"></div><div class="snake"></div><div class="snake head"></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+		<div class="snake"></div><div class="snake"></div><div class="snake"></div><div class="snake head"></div><div></div><div></div><div></div><div></div><div></div><div></div>
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -20,5 +23,51 @@
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 	</div>
+	<script type="text/javascript">
+		imgs = 
+['106912305_278673760084238_2929360676631354123_n.jpg ',
+'107434460_285969249183569_2348082969763584167_n.jpg ',
+'120204041_341437200503716_3730885576958204492_n.jpg ',
+'137623859_1356914057996406_1882948490913453002_n.jpg ',
+'142003629_234145314927555_5669574316935593808_n.jpg ',
+'151260928_2544809462493039_5462886189913860902_n.jpg ',
+'152551866_164818418639379_5538865316966932969_n.jpg ',
+'153209509_711225623089457_6130460243137583267_n.jpg ',
+'153519844_268921277956232_9220726610695022598_n.jpg ',
+'154103174_722402568467640_9118971663455781395_n.jpg ',
+'154698879_741105339942551_9039620680377337261_n.jpg ',
+'161587888_746025189444413_5334598978049865098_n.jpg ',
+'161829296_268959621368020_2275325878492836778_n.jpg ',
+'162045444_2548921052075755_4649633522704194212_n.jpg ',
+'162051939_495925374907377_2492064729024440413_n (1).jpg ',
+'162051939_495925374907377_2492064729024440413_n.jpg ',
+'162054216_475662040447886_3620764078973708115_n.jpg ',
+'162133171_1366755590354231_2311257043352608292_n.jpg ',
+'162167623_452007662885621_2936170506645831172_n.jpg ',
+'162172303_940124373394247_3647451225566131131_n.jpg ',
+'162196333_515898182744361_2804930756603017949_n.jpg ',
+'162661264_764489184470306_8930929784030707177_n (1).jpg ',
+'162661264_764489184470306_8930929784030707177_n.jpg ',
+'163955743_3304395529661850_566744458257163112_n.jpg ',
+'164472068_353693762624964_5934217177038166529_n.jpg ',
+'169099747_124168316353719_8149598015781568540_n.jpg ',
+'245821511_1480086419028002_3683198430302288722_n.jpg ',
+'245916311_590154232311066_3414281512382329946_n.jpg ',
+'246185257_419888709828420_9058911551415959778_n.jpg ',
+'73385865_138078674158484_6392875497807670600_n.jpg ',
+'73414969_1131667500360044_7329087362581595180_n.jpg ',
+'hyeri_0609_269894261_447938030142711_3102292289330599701_n.jpg ',
+'hyeri_0609_269930438_1091322748369103_2537951375494549671_n.jpg ',
+'hyeri_0609_269979610_476626047376321_6675961694228123531_n.jpg ',
+'hyeri_0609_270074058_475429833934386_4965105800098609627_n.jpg ',
+'hyeri_square_pic.jpg ',
+'245916311_590154232311066_3414281512382329946_n.png ',
+'246185257_419888709828420_9058911551415959778_n.png ',
+'bg.png '];
+		rand = Math.floor(Math.random()*imgs.length);
+		$('body').attr({
+			style: 'background: url(\'..\/hyeri\/' + imgs[rand] + '\')'
+		});
+	</script>
 </body>
 </html>
