@@ -2,10 +2,16 @@
 	font-family: 'Kite One', sans-serif;
 	padding: 0;
 	margin: 0;
+	transition: 0.3s;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
 }
 
 main {
-	width: 500px;
+	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -32,10 +38,16 @@ button {
 	border: none;
 	border-bottom: 2px solid #ffffff;
 	outline: none;
+	padding: 10px;
 }
 
 .new:focus {
 	border-bottom: 2px solid #58D68D;
+}
+
+.list {
+	list-style-type: none;
+	margin-bottom: 50px;
 }
 
 .task {
@@ -44,11 +56,17 @@ button {
 	margin-top: 5px;
 }
 
-.task input:checked + span {
+.task .status:checked + .content {
  	text-decoration: line-through;
  	color: #ABB2B9;
 }
 
+.task .content {
+	width: 90%;
+	border: none;
+	outline: none;
+}
+
 input {
-	margin: 10px;
+	/*margin: 10px;*/
 }

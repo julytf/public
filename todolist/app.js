@@ -1,7 +1,10 @@
 $(document).ready(function() {
-	let form = $('form');
 	let input = $('.new');
+	let ul = $('ul');
 
+	if (localStorage.getItem('todolist') == null) {
+		createIntitialData();
+	}
 	loadTask();
 
 	//add new task
@@ -18,22 +21,34 @@ $(document).ready(function() {
 
 	$('.reload').click(function(event) {
 		loadTask();
+		$('.show_finnished_task')[0].style.backgroundColor = '';
+	
 	});
 
 	$('.show_finnished_task').click(function(event) {
-		loadFullTask();
+		$('.task').has('input:checked').toggle();
+		$('.show_finnished_task')[0].style.backgroundColor = $('.show_finnished_task')[0].style.backgroundColor == '' ? '#2ECC71' : '';
 	});
 
-	function setUp() {console.log('setUp');
-			//changeTaskStatusInData
+	function setUp() {//console.log('setUp');
+			//updateTaskStatusInData
 			$('input[type="checkbox"]').off('change');
 			$('input[type="checkbox"]').change(function(event) {
-				id = this.getAttribute('id');
+				id = this.getAttribute('data-id');
 				if(this.checked == true) {
-					changeTaskStatusInData(id,'finished');
+					$(this).next().prop("readonly",true);
+					updateTaskStatusInData(id,'finished');
 				} else if(this.checked == false) {
-					changeTaskStatusInData(id,'unfinished');
+					$(this).next().prop("readonly",false);
+					updateTaskStatusInData(id,'unfinished');
 				}
+			});
+			$('input[class="content"]').off('blur');
+			$('input[class="content"]').blur(function(event) {
+				// console.log(this.getAttribute('value'));
+				id = this.getAttribute('data-id');
+				content = this.value;
+				updateTaskCotentInData(id,content);
 			});
 	}
 
@@ -47,25 +62,19 @@ $(document).ready(function() {
 			if (element.expire != '' && element.expire < new Date().getTime()) {
 				removeTaskFromData(element.id);
 			} else {
-				status = element.status == 'finished' ? ' style="display: none;"' : '';
-				form.after('<div class="task"' + status + '><input id="' + element.id + '" type="checkbox" name=""><span>' + element.content + '</span></div>');
-			}
-		})
-		setUp();
-	}
-
-	function loadFullTask() {//console.log('loadFullTask');
-		$('.task').remove();
-		data = JSON.parse(localStorage.getItem('todolist'));
-		if (!data) {
-			return;
-		}
-		data.forEach( (element) => {
-			if (element.expire != '' && element.expire < new Date().getTime()) {
-				removeTaskFromData(element.id);
-			} else {
-				status = element.status == 'finished' ? ' checked' : '';
-				form.after('<div class="task"><input id="' + element.id + '" type="checkbox" name=""' + status + '><span>' + element.content + '</span></div>');
+				if (element.status == 'finished') {
+					readonly = 'readonly';
+					display = 'style="display: none;"';
+					checked = 'checked';
+				} else {
+					readonly = '';
+					display = '';
+					checked = '';
+				}
+				ul.append(`<li class="task"`+display+`>
+								<input type="checkbox" data-id="`+element.id+`" class="status" `+checked+`>
+								<input type="text" data-id="`+element.id+`" class="content" value="`+element.content+`"`+readonly+`>
+							</li>`);
 			}
 		})
 		setUp();
@@ -73,8 +82,10 @@ $(document).ready(function() {
 
 	function displayTask (id,content) {
 		input.val('');
-		form.after('<div class="task"><input id="' + id + '" type="checkbox" name=""><span>' + content + '</span></div>');
-		// console.log(form);
+		ul.append(`<li class="task">
+						<input type="checkbox" data-id="`+id+`" class="status">
+						<input type="text" data-id="`+id+`" class="content" value="`+content+`">
+					</li>`);
 		setUp();
 	}
 
@@ -83,7 +94,7 @@ $(document).ready(function() {
 		if (!data) {
 			data = [];
 		}
-		console.log(data);
+		// console.log(data);
 
 		do {
 			id = Math.ceil(Math.random()*1e5);
@@ -101,7 +112,7 @@ $(document).ready(function() {
 		return id;
 	}
 
-	function changeTaskStatusInData (id,status) {//console.log('changeTaskStatus');
+	function updateTaskStatusInData (id,status) {//console.log('changeTaskStatus');
 		data = JSON.parse(localStorage.getItem('todolist'));
 		if (!data) {			
 			return;
@@ -119,7 +130,24 @@ $(document).ready(function() {
 			}
 		}
 
-		console.log(data);
+		// console.log(data);
+		localStorage.setItem('todolist',JSON.stringify(data));
+	}
+
+	function updateTaskCotentInData (id,content) {//console.log('updateTaskCotentInData');
+		data = JSON.parse(localStorage.getItem('todolist'));
+		if (!data) {			
+			return;
+		} 
+
+		for (var i = data.length - 1; i >= 0; i--) {
+			if (data[i].id == id) {
+				data[i].content = content;
+				break;
+			}
+		}
+
+		// console.log(data);
 		localStorage.setItem('todolist',JSON.stringify(data));
 	}
 
@@ -136,7 +164,30 @@ $(document).ready(function() {
 			}
 		}
 
-		console.log(data);
+		// console.log(data);
+		localStorage.setItem('todolist',JSON.stringify(data));
+	}
+
+	//create intitial data
+	function createIntitialData() {
+		data = [{
+			'id': 1,
+			'status': 'unfinished',
+			'content': 'fill the input to add new task',
+			'expire': ''
+		},
+		{
+			'id': 2,
+			'status': 'unfinished',
+			'content': 'check the checkbox to mark as finished',
+			'expire': ''
+		},
+		{
+			'id': 3,
+			'status': 'unfinished',
+			'content': 'use can change the task content after add as long as it not checked',
+			'expire': ''
+		}]
 		localStorage.setItem('todolist',JSON.stringify(data));
 	}
 });
