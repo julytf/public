@@ -48,6 +48,7 @@ button {
 .grid {
 	width: 300px;
 	height: 600px;
+	/*background: url(../hyeri/22639422_197387774137866_4854918348636422144_n.jpg);*/
 	background: #212F3D;
 	display: flex;
 	flex-wrap: wrap;

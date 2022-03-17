@@ -2,6 +2,15 @@ $(document).ready(function() {
 	let input = $('.new');
 	let ul = $('ul');
 
+	class Task {
+		constructor(id, status, content, expire) {
+			this.id = id,
+			this.status = status,
+			this.content = content,
+			this.expire = expire
+		}
+	}
+
 	if (localStorage.getItem('todolist') == null) {
 		createIntitialData();
 	}
@@ -21,33 +30,33 @@ $(document).ready(function() {
 
 	$('.reload').click(function(event) {
 		loadTask();
-		$('.show_finnished_task')[0].style.backgroundColor = '';
+		$('.show_finnished_task')[0].classList.toggle('pressed', false);
 	
 	});
 
 	$('.show_finnished_task').click(function(event) {
 		$('.task').has('input:checked').toggle();
-		$('.show_finnished_task')[0].style.backgroundColor = $('.show_finnished_task')[0].style.backgroundColor == '' ? '#2ECC71' : '';
+		$('.show_finnished_task')[0].classList.toggle('pressed');
 	});
 
 	function setUp() {//console.log('setUp');
 			//updateTaskStatusInData
-			$('input[type="checkbox"]').off('change');
-			$('input[type="checkbox"]').change(function(event) {
+			$('.status').off('change');
+			$('.status').change(function(event) {
 				id = this.getAttribute('data-id');
 				if(this.checked == true) {
-					$(this).next().prop("readonly",true);
+					$(this).next().prop("contenteditable",false);
 					updateTaskStatusInData(id,'finished');
 				} else if(this.checked == false) {
-					$(this).next().prop("readonly",false);
+					$(this).next().prop("contenteditable",true);
 					updateTaskStatusInData(id,'unfinished');
 				}
 			});
-			$('input[class="content"]').off('blur');
-			$('input[class="content"]').blur(function(event) {
-				// console.log(this.getAttribute('value'));
+			$('.content').off('blur');
+			$('.content').blur(function(event) {
+				// console.log($(this).html());	
 				id = this.getAttribute('data-id');
-				content = this.value;
+				content = $(this).html();
 				updateTaskCotentInData(id,content);
 			});
 	}
@@ -63,17 +72,17 @@ $(document).ready(function() {
 				removeTaskFromData(element.id);
 			} else {
 				if (element.status == 'finished') {
-					readonly = 'readonly';
+					contenteditable = '';
 					display = 'style="display: none;"';
 					checked = 'checked';
 				} else {
-					readonly = '';
+					contenteditable = 'contenteditable';
 					display = '';
 					checked = '';
 				}
-				ul.append(`<li class="task"`+display+`>
-								<input type="checkbox" data-id="`+element.id+`" class="status" `+checked+`>
-								<input type="text" data-id="`+element.id+`" class="content" value="`+element.content+`"`+readonly+`>
+				ul.append(`<li class="task"${display}>
+								<input type="checkbox" data-id="${element.id}" class="status" ${checked}>
+								<div data-id="${element.id}" class="content" ${contenteditable} spellcheck="false">${element.content}</div>
 							</li>`);
 			}
 		})
@@ -83,8 +92,8 @@ $(document).ready(function() {
 	function displayTask (id,content) {
 		input.val('');
 		ul.append(`<li class="task">
-						<input type="checkbox" data-id="`+id+`" class="status">
-						<input type="text" data-id="`+id+`" class="content" value="`+content+`">
+						<input type="checkbox" data-id="${id}" class="status">
+						<div data-id="${id}" class="content" contenteditable spellcheck="false">${content}</div>
 					</li>`);
 		setUp();
 	}
@@ -99,12 +108,7 @@ $(document).ready(function() {
 		do {
 			id = Math.ceil(Math.random()*1e5);
 		} while(data.some((element) => {return element.id == id}));
-		task = {
-			'id': id,
-			'status': 'unfinished',
-			'content': content,
-			'expire': ''
-		}
+		task = new Task(id, 'unfinished', content, '');
 		data.push(task);
 
 		localStorage.setItem('todolist',JSON.stringify(data));
@@ -170,24 +174,11 @@ $(document).ready(function() {
 
 	//create intitial data
 	function createIntitialData() {
-		data = [{
-			'id': 1,
-			'status': 'unfinished',
-			'content': 'fill the input to add new task',
-			'expire': ''
-		},
-		{
-			'id': 2,
-			'status': 'unfinished',
-			'content': 'check the checkbox to mark as finished',
-			'expire': ''
-		},
-		{
-			'id': 3,
-			'status': 'unfinished',
-			'content': 'use can change the task content after add as long as it not checked',
-			'expire': ''
-		}]
+		data = [
+			new Task(1,'unfinished','fill the input to add new task',''),
+			new Task(2,'unfinished','check the checkbox to mark as finished',''),
+			new Task(3,'unfinished','you can change the task content after add as long as it not checked','')
+		]
 		localStorage.setItem('todolist',JSON.stringify(data));
 	}
 });
