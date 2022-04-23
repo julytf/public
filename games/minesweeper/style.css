@@ -1,0 +1,155 @@
+:root {
+	--border: #888888;
+	--cell: #c0c0c0;
+	--no-1: #0000ff;
+	--no-2: #008000;
+	--no-3: #fe0000;
+	--no-4: #080871;
+	--no-5: #691206;
+	--no-6: #006a79;
+	--no-7: ;
+	--no-8: ;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+main {
+}
+
+#board {
+	/*width: calc(30px*10);*/
+	/*height: calc(30px*10);*/
+	/*display: flex;*/
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	flex-wrap: wrap;
+	border: 5px solid var(--border);
+}
+
+.board__cell {
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--cell);
+	border: 1px solid var(--border);
+	box-sizing: border-box;
+}
+
+.board__cell__test {
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--cell);
+	border: 1px solid var(--border);
+	box-sizing: border-box;
+}
+
+.board__cell--uncover::before {
+	content: "";
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--cell);
+	border: 3px outset;
+	box-sizing: border-box;
+	z-index: 10;
+}
+
+.board__cell--bomb::after {
+	content: "";
+	width: 30px;
+	height: 30px;
+	background: url(images/bomb.png);
+	background-size: cover;
+	z-index: 1;
+}
+
+.board__cell--flag::after {
+	content: "";
+	width: 30px;
+	height: 30px;
+	background: url(images/flag.png);
+	background-size: cover;
+	z-index: 10;
+}
+
+.board__cell--no-1::after {
+	content: "1";
+	color: var(--no-1);
+}
+
+.board__cell--no-1::after {
+	content: "1";
+	color: var(--no-1);
+}
+
+.board__cell--no-2::after {
+	content: "2";
+	color: var(--no-2);
+}
+
+.board__cell--no-3::after {
+	content: "3";
+	color: var(--no-3);
+}
+
+.board__cell--no-4::after {
+	content: "4";
+	color: var(--no-4);
+}
+
+.board__cell--no-5::after {
+	content: "5";
+	color: var(--no-5);
+}
+
+.board__cell--no-6::after {
+	content: "6";
+	color: var(--no-6);
+}
+
+.board__cell--no-7::after {
+	content: "7";
+	color: var(--no-7);
+}
+
+.board__cell--no-8::after {
+	content: "8";
+	color: var(--no-8);
+}
+
+#controller {
+	text-align: center;
+	margin: 10px;
+}
+
+.btn {
+	width: 50px;
+	height: 30px;
+	border: 2px outset;
+}
+
+.btn:active {
+	border: 2px inset;
+}

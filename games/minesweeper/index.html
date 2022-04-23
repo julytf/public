@@ -1,0 +1,55 @@
+<html>
+<head>
+	<meta author="julyyv">
+	<meta version="1.0">
+	<title>MineSweeper</title>
+  	<link rel="icon" type="image/x-icon" href="images/bomb.png">
+	<link rel="stylesheet" href="style.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+<main>
+	<div id="test" style="display: flex; margin-bottom: 20px; margin-left: 5px;">
+		<div class="board__cell__test board__cell--no-1"></div>
+		<div class="board__cell__test board__cell--no-2"></div>
+		<div class="board__cell__test board__cell--no-3"></div>
+		<div class="board__cell__test board__cell--no-4"></div>
+		<div class="board__cell__test board__cell--no-5"></div>
+		<div class="board__cell__test board__cell--no-6"></div>
+		<div class="board__cell__test board__cell--no-7"></div>
+		<div class="board__cell__test board__cell--no-8"></div>
+		<div class="board__cell__test board__cell--bomb"></div>
+		<div class="board__cell__test board__cell--flag"></div>
+	</div>
+
+	<!-- <div id="board">
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+		<div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div><div class="board__cell"></div>
+	</div> -->
+	<!-- <div id="board">
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+		<div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div><div class="board__cell board__cell--uncover"></div>
+	</div> -->
+	<div id="board"></div>
+	<div id="controller">
+		<button id="playBtn" class="btn">Play</button>
+	</div>
+</main>
+</body>
+</html>
