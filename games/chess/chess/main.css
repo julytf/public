@@ -1,0 +1,76 @@
+#chess {
+    --board-color: #2E4053;
+    width: 720px;
+    height: 720px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    border: 3px solid black;
+    background-size: 90px 90px, 90px 90px;
+    position: relative;
+    box-sizing: unset;
+}
+
+#chess > .row {
+    width: 100%;
+    height: 12.5%;
+    display: flex;
+}
+
+#chess > .row > .cell {
+    width: 12.5%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#chess > .row:nth-child(2n + 1) > .cell:nth-child(2n) {
+    background-color: var(--board-color);
+}
+
+#chess > .row:nth-child(2n) > .cell:nth-child(2n + 1) {
+    background-color: var(--board-color);
+}
+
+#chess .cell[data-has-figure=true]::after {
+    content: '';
+    height: 200%;
+    display: block;
+    background-image: url('./assets/images/figures.svg');
+    background-color: #ff000015;
+    background-size: cover;
+}
+
+#chess .cell[data-color=black]::after {
+    margin-top: -100%;
+}
+
+#chess .cell[data-type=king]::after {
+}
+
+#chess .cell[data-type=queen]::after {
+    margin-left: -100%;
+}
+
+#chess .cell[data-type=bishop]::after {
+    margin-left: -200%;
+}
+
+#chess .cell[data-type=knight]::after {
+    margin-left: -300%;
+}
+
+#chess .cell[data-type=rook]::after {
+    margin-left: -400%;
+}
+
+#chess .cell[data-type=pawn]::after {
+    margin-left: -500%;
+}
+
+#chess .cell[data-available=true]::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #58D68D55;
+}
